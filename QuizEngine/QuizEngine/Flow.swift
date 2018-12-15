@@ -23,13 +23,17 @@ class Flow {
 
     func start() {
         if let firstQuestion = questions.first {
-            router.routesTo(question: firstQuestion) { [weak self] _ in
-                guard let strongSelf = self else { return }
-                
-                let firstQuestionIndex = strongSelf.questions.index(of: firstQuestion)!
-                let nextQuestion = strongSelf.questions[firstQuestionIndex + 1]
-                strongSelf.router.routesTo(question: nextQuestion, answerCallback: { _ in })
-            }
+            router.routesTo(question: firstQuestion, answerCallback: routeNext(firstQuestion))
+        }
+    }
+
+    func routeNext(_ question: String) -> (String) -> Void {
+        return { [weak self] _ in
+            guard let strongSelf = self else { return }
+
+            let currentQuestionIndex = strongSelf.questions.index(of: question)!
+            let nextQuestion = strongSelf.questions[currentQuestionIndex + 1]
+            strongSelf.router.routesTo(question: nextQuestion, answerCallback: strongSelf.routeNext(nextQuestion))
         }
     }
 }
