@@ -9,7 +9,8 @@
 import Foundation
 
 protocol Router {
-    func routesTo(question: String, answerCallback: @escaping (String) -> Void)
+    typealias AnswerCallback = (String) -> Void
+    func routesTo(question: String, answerCallback: @escaping AnswerCallback)
 }
 
 class Flow {
@@ -27,7 +28,7 @@ class Flow {
         }
     }
 
-    func routeNext(_ question: String) -> (String) -> Void {
+    func routeNext(_ question: String) -> Router.AnswerCallback {
         return { [weak self] _ in
             guard let strongSelf = self else { return }
 
