@@ -12,6 +12,13 @@ import XCTest
 
 class FlowTest: XCTestCase {
 
+    // Prevent memory leaks
+    weak var weakSUT: Flow?
+
+    override func tearDown() {
+        XCTAssertNil(weakSUT)
+    }
+
     let router = RouterSpy()
 
     func test_start_WithNoQuestions_DoesNotRouteToQuestion() {
@@ -56,8 +63,12 @@ class FlowTest: XCTestCase {
         XCTAssertEqual(router.routedQuestions, ["Q1", "Q2"])
     }
 
+    // MARK: - Helpers
+
     func makeSUT(questions: [String]) -> Flow {
-        return Flow(questions: questions, router: router)
+        let flow = Flow(questions: questions, router: router)
+        weakSUT = flow
+        return flow
     }
 
     class RouterSpy: Router {
