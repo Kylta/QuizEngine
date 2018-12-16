@@ -15,12 +15,9 @@ class ResultViewControllerTest: XCTestCase {
         XCTAssertEqual(makeSUT(summary: "a summary").navigationItem.title, "a summary")
     }
 
-    func test_viewDidLoad_withoutAnswers_doesNotRenderAnswers() {
+    func test_viewDidLoad_rendersAnswers() {
         XCTAssertEqual(makeSUT(answers: []).tableView.numberOfRows(inSection: 0), 0)
-    }
-
-    func test_viewDidLoad_withOneAnswer_renderAnswer() {
-        XCTAssertEqual(makeSUT(answers: ["A1"]).tableView.numberOfRows(inSection: 0), 1)
+        XCTAssertEqual(makeSUT(answers: [makeDummyAnswer()]).tableView.numberOfRows(inSection: 0), 1)
     }
 
     // MARK: - Helpers
@@ -28,5 +25,9 @@ class ResultViewControllerTest: XCTestCase {
         let sut = ResultViewController(summary: summary, answers: answers)
         _ = sut.view
         return sut
+    }
+
+    private func makeDummyAnswer() -> String {
+        return "an answer"
     }
 }
