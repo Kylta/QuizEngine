@@ -10,6 +10,8 @@
 		4687B69E21C645B300C364BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4687B69D21C645B300C364BE /* AppDelegate.swift */; };
 		4687B6A521C645B500C364BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4687B6A421C645B500C364BE /* Assets.xcassets */; };
 		4687B6A821C645B500C364BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4687B6A621C645B500C364BE /* LaunchScreen.storyboard */; };
+		4687B6BE21C6471500C364BE /* QuestionViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4687B6BD21C6471500C364BE /* QuestionViewControllerTest.swift */; };
+		4687B6C021C6478A00C364BE /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4687B6BF21C6478A00C364BE /* QuestionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +32,8 @@
 		4687B6A921C645B500C364BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4687B6AE21C645B500C364BE /* QuizAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuizAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4687B6B421C645B500C364BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4687B6BD21C6471500C364BE /* QuestionViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewControllerTest.swift; sourceTree = "<group>"; };
+		4687B6BF21C6478A00C364BE /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,7 @@
 				4687B6A421C645B500C364BE /* Assets.xcassets */,
 				4687B6A621C645B500C364BE /* LaunchScreen.storyboard */,
 				4687B6A921C645B500C364BE /* Info.plist */,
+				4687B6BF21C6478A00C364BE /* QuestionViewController.swift */,
 			);
 			path = QuizApp;
 			sourceTree = "<group>";
@@ -83,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				4687B6B421C645B500C364BE /* Info.plist */,
+				4687B6BD21C6471500C364BE /* QuestionViewControllerTest.swift */,
 			);
 			path = QuizAppTests;
 			sourceTree = "<group>";
@@ -140,6 +146,7 @@
 					};
 					4687B6AD21C645B500C364BE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = 4687B69921C645B300C364BE;
 					};
 				};
@@ -187,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4687B6C021C6478A00C364BE /* QuestionViewController.swift in Sources */,
 				4687B69E21C645B300C364BE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4687B6BE21C6471500C364BE /* QuestionViewControllerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +386,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78BZCUCGN3;
 				INFOPLIST_FILE = QuizAppTests/Info.plist;
@@ -387,6 +397,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.christophebugnon.QuizAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuizApp.app/QuizApp";
@@ -398,6 +409,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78BZCUCGN3;
 				INFOPLIST_FILE = QuizAppTests/Info.plist;
