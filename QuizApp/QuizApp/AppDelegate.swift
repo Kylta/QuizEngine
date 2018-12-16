@@ -19,11 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
 
-        let questionViewController = QuestionViewController(question: "A question ?", options: ["Option 1", "Option 2"]) {
-            print($0)
-        }
+       let viewController = ResultViewController(summary: "You got 1/2 correct", answers: [
+        PresentableAnswer(question: "Question ??", answer: "Yeahh !", wrongAnswer: nil),
+        PresentableAnswer(question: "Another Question ??", answer: "Hell yeah !", wrongAnswer: "Helll noooo !!")
+        ])
 
-        let navController = UINavigationController(rootViewController: questionViewController)
+        let navController = UINavigationController(rootViewController: viewController)
 
         window?.rootViewController = navController
 
