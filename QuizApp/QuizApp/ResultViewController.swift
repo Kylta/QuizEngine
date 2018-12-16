@@ -9,11 +9,22 @@
 import UIKit
 
 struct PresentableAnswer {
+    let question: String
+    let answer: String
     let isCorrect: Bool
 }
 
 class CorrectAnswerCell: UITableViewCell {
 
+    var presentableAnswer: PresentableAnswer! {
+        didSet {
+        questionLabel.text = presentableAnswer.question
+        answerLabel.text = presentableAnswer.answer
+        }
+    }
+
+    var questionLabel = UILabel()
+    var answerLabel = UILabel()
 }
 
 class WrongAnswerCell: UITableViewCell {
@@ -24,6 +35,7 @@ class ResultViewController: UITableViewController {
 
     private var summary = ""
     private var answers = [PresentableAnswer]()
+    private let correctReuseIdentifier = "CorrectAnswerCell"
 
     convenience init(summary: String, answers: [PresentableAnswer]) {
         self.init()
@@ -35,6 +47,7 @@ class ResultViewController: UITableViewController {
         super.viewDidLoad()
 
         navigationItem.title = summary
+        tableView.register(CorrectAnswerCell.self, forCellReuseIdentifier: correctReuseIdentifier)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,6 +56,11 @@ class ResultViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let answer = answers[indexPath.row]
-        return answer.isCorrect ? CorrectAnswerCell() : WrongAnswerCell()
+        if answer.isCorrect {
+            let cell = tableView.dequeueReusableCell(withIdentifier: correctReuseIdentifier, for: indexPath) as! CorrectAnswerCell
+            cell.presentableAnswer = answer
+            return cell
+        }
+        return WrongAnswerCell()
     }
 }

@@ -17,20 +17,38 @@ class ResultViewControllerTest: XCTestCase {
 
     func test_viewDidLoad_rendersAnswers() {
         XCTAssertEqual(makeSUT(answers: []).tableView.numberOfRows(inSection: 0), 0)
-        XCTAssertEqual(makeSUT(answers: [makeDummyAnswer()]).tableView.numberOfRows(inSection: 0), 1)
+        XCTAssertEqual(makeSUT(answers: [makeAnswer(isCorrect: false)]).tableView.numberOfRows(inSection: 0), 1)
     }
 
     func test_viewDidLoad_withCorrectAnswer_renderCorrectAnswerCell() {
-        let sut = makeSUT(answers: [PresentableAnswer(isCorrect: true)])
+        let sut = makeSUT(answers: [makeAnswer(isCorrect: true)])
 
         let cell = sut.tableView.cell(at: 0) as? CorrectAnswerCell
 
         XCTAssertNotNil(cell)
     }
 
+    func test_viewDidLoad_withCorrectAnswer_renderQuestionText() {
+        let sut = makeSUT(answers: [makeAnswer(question: "Q1", isCorrect: true)])
+
+        let cell = sut.tableView.cell(at: 0) as? CorrectAnswerCell
+
+        XCTAssertEqual(cell?.questionLabel.text, "Q1")
+    }
+
+    func test_viewDidLoad_withCorrectAnswer_renderAnswerText() {
+        let answer = PresentableAnswer(question: "Q1", answer: "A1", isCorrect: true)
+        let sut = makeSUT(answers: [answer])
+
+        let cell = sut.tableView.cell(at: 0) as? CorrectAnswerCell
+
+        XCTAssertEqual(cell?.answerLabel.text, "A1")
+    }
+
+
     func test_viewDidLoad_withWrongAnswer_renderWrongAnswerCell() {
-        let sut = makeSUT(answers: [PresentableAnswer(isCorrect: false)])
-        
+        let sut = makeSUT(answers: [makeAnswer(isCorrect: false)])
+
         let cell = sut.tableView.cell(at: 0) as? WrongAnswerCell
 
         XCTAssertNotNil(cell)
@@ -43,7 +61,7 @@ class ResultViewControllerTest: XCTestCase {
         return sut
     }
 
-    private func makeDummyAnswer() -> PresentableAnswer {
-        return PresentableAnswer(isCorrect: false)
+    private func makeAnswer(question: String = "", answer: String = "", isCorrect: Bool) -> PresentableAnswer {
+        return PresentableAnswer(question: question, answer: answer, isCorrect: isCorrect)
     }
 }
