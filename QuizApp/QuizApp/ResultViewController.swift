@@ -15,7 +15,6 @@ struct PresentableAnswer {
 }
 
 class CorrectAnswerCell: UITableViewCell {
-
     var presentableAnswer: PresentableAnswer! {
         didSet {
         questionLabel.text = presentableAnswer.question
@@ -28,7 +27,15 @@ class CorrectAnswerCell: UITableViewCell {
 }
 
 class WrongAnswerCell: UITableViewCell {
+    var presentableAnswer: PresentableAnswer! {
+        didSet {
+            questionLabel.text = presentableAnswer.question
+            correctAnswerLabel.text = presentableAnswer.answer
+        }
+    }
 
+    var questionLabel = UILabel()
+    var correctAnswerLabel = UILabel()
 }
 
 class ResultViewController: UITableViewController {
@@ -36,6 +43,7 @@ class ResultViewController: UITableViewController {
     private var summary = ""
     private var answers = [PresentableAnswer]()
     private let correctReuseIdentifier = "CorrectAnswerCell"
+    private let wrongReuseIdentifier = "wrongAnswerCell"
 
     convenience init(summary: String, answers: [PresentableAnswer]) {
         self.init()
@@ -48,6 +56,7 @@ class ResultViewController: UITableViewController {
 
         navigationItem.title = summary
         tableView.register(CorrectAnswerCell.self, forCellReuseIdentifier: correctReuseIdentifier)
+        tableView.register(WrongAnswerCell.self, forCellReuseIdentifier: wrongReuseIdentifier)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,11 +65,23 @@ class ResultViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let answer = answers[indexPath.row]
+
         if answer.isCorrect {
-            let cell = tableView.dequeueReusableCell(withIdentifier: correctReuseIdentifier, for: indexPath) as! CorrectAnswerCell
-            cell.presentableAnswer = answer
-            return cell
+            return correctAnswerCell(for: answer, indexPath: indexPath)
+        } else {
+            return wrongAnswerCell(for: answer, indexPath: indexPath)
         }
-        return WrongAnswerCell()
+    }
+
+    private func correctAnswerCell(for answer: PresentableAnswer, indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: correctReuseIdentifier, for: indexPath) as! CorrectAnswerCell
+        cell.presentableAnswer = answer
+        return cell
+    }
+
+    private func wrongAnswerCell(for answer: PresentableAnswer, indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: wrongReuseIdentifier, for: indexPath) as! WrongAnswerCell
+        cell.presentableAnswer = answer
+        return cell
     }
 }
