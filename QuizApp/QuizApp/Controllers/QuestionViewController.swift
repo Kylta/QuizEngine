@@ -25,6 +25,7 @@ class QuestionViewController: UITableViewController {
         super.viewDidLoad()
 
         navigationItem.title = question
+        tableView.register(UITableViewCell.self)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,7 +33,7 @@ class QuestionViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = dequeueCell(in: tableView)
+        let cell = tableView.dequeueReusableCell(UITableViewCell.self, indexPath: indexPath)
         cell.textLabel?.text = options[indexPath.row]
         return cell
     }
@@ -49,12 +50,5 @@ class QuestionViewController: UITableViewController {
 
     private func selectedOptions(in tableView: UITableView) -> [String] {
         return tableView.indexPathsForSelectedRows?.map { options[$0.row] } ?? []
-    }
-
-    private func dequeueCell(in tableView: UITableView) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierCell) {
-            return cell
-        }
-        return UITableViewCell(style: .default, reuseIdentifier: reuseIdentifierCell)
     }
 }
