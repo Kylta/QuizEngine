@@ -25,7 +25,7 @@ class QuestionViewControllerTest: XCTestCase {
         XCTAssertEqual(makeSUT(options: ["A1", "A2"]).tableView.title(at: 1), "A2")
     }
 
-    func test_optionSelected_withTwoOptions_wnotifiesDelegateWithTheLastSelection() {
+    func test_optionSelected_withSingleOption_notifiesDelegateWithTheLastSelection() {
         var receivedAnswer = [String]()
         let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
 
@@ -36,7 +36,18 @@ class QuestionViewControllerTest: XCTestCase {
         XCTAssertEqual(receivedAnswer, ["A2"])
     }
 
-    func test_optionSelected_withMultiplesSelectionEnabled_wnotifiesDelegateSelections() {
+    func test_optiondeselected_withSingleOption_doesNotNotifyDelegateWithEmptySelection() {
+        var callbackCount = 0
+        let sut = makeSUT(options: ["A1", "A2"]) { _ in callbackCount += 1 }
+
+        sut.tableView.select(row: 0)
+        XCTAssertEqual(callbackCount, 1)
+
+        sut.tableView.deselect(row: 0)
+        XCTAssertEqual(callbackCount, 1)
+    }
+
+    func test_optionSelected_withMultiplesSelectionEnabled_notifiesDelegateSelections() {
         var receivedAnswer = [String]()
         let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
         sut.tableView.allowsMultipleSelection = true
@@ -48,7 +59,7 @@ class QuestionViewControllerTest: XCTestCase {
         XCTAssertEqual(receivedAnswer, ["A1", "A2"])
     }
 
-    func test_optionDeselected_withMultiplesSelectionEnabled_wnotifiesDelegateSelections() {
+    func test_optionDeselected_withMultiplesSelectionEnabled_notifiesDelegateSelections() {
         var receivedAnswer = [String]()
         let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
         sut.tableView.allowsMultipleSelection = true
