@@ -139,19 +139,4 @@ class FlowTest: XCTestCase {
         weakSUT = flow
         return flow
     }
-
-    class RouterSpy: Router {
-        var routedQuestions = [String]()
-        var routedResult: Result<String, String>? = nil
-        var answerCallback: (String) -> Void = { _ in }
-
-        func routesTo(question: String, answerCallback: @escaping ((String) -> Void)) {
-            routedQuestions.append(question)
-            self.answerCallback = answerCallback
-        }
-
-        func routeTo(result: Result<String, String>) {
-            routedResult = result
-        }
-    }
 }
