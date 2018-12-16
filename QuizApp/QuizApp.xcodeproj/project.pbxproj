@@ -12,6 +12,8 @@
 		4687B6A821C645B500C364BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4687B6A621C645B500C364BE /* LaunchScreen.storyboard */; };
 		4687B6BE21C6471500C364BE /* QuestionViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4687B6BD21C6471500C364BE /* QuestionViewControllerTest.swift */; };
 		4687B6C021C6478A00C364BE /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4687B6BF21C6478A00C364BE /* QuestionViewController.swift */; };
+		4687B6C221C6695E00C364BE /* ResultViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4687B6C121C6695E00C364BE /* ResultViewControllerTest.swift */; };
+		4687B6C421C6696600C364BE /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4687B6C321C6696600C364BE /* ResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 		4687B6B421C645B500C364BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4687B6BD21C6471500C364BE /* QuestionViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewControllerTest.swift; sourceTree = "<group>"; };
 		4687B6BF21C6478A00C364BE /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		4687B6C121C6695E00C364BE /* ResultViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewControllerTest.swift; sourceTree = "<group>"; };
+		4687B6C321C6696600C364BE /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 				4687B6A621C645B500C364BE /* LaunchScreen.storyboard */,
 				4687B6A921C645B500C364BE /* Info.plist */,
 				4687B6BF21C6478A00C364BE /* QuestionViewController.swift */,
+				4687B6C321C6696600C364BE /* ResultViewController.swift */,
 			);
 			path = QuizApp;
 			sourceTree = "<group>";
@@ -89,6 +94,7 @@
 			children = (
 				4687B6B421C645B500C364BE /* Info.plist */,
 				4687B6BD21C6471500C364BE /* QuestionViewControllerTest.swift */,
+				4687B6C121C6695E00C364BE /* ResultViewControllerTest.swift */,
 			);
 			path = QuizAppTests;
 			sourceTree = "<group>";
@@ -196,6 +202,7 @@
 			files = (
 				4687B6C021C6478A00C364BE /* QuestionViewController.swift in Sources */,
 				4687B69E21C645B300C364BE /* AppDelegate.swift in Sources */,
+				4687B6C421C6696600C364BE /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4687B6BE21C6471500C364BE /* QuestionViewControllerTest.swift in Sources */,
+				4687B6C221C6695E00C364BE /* ResultViewControllerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
